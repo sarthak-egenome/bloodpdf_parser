@@ -7,6 +7,7 @@ import click
 from .extract import extract_all, extract_gender
 from .normalize import load_registry, normalize_triples_with_nulls, _build_alias_map, _best_match
 from .schema import load_json, save_json
+from .model_filler import fill_null_values_with_means, check_model_completeness
 
 # Optional SageMaker import
 try:
@@ -25,7 +26,10 @@ except ImportError:
 @click.option("--sagemaker", "sagemaker_endpoint", required=False, help="AWS SageMaker endpoint URL for bioage prediction")
 @click.option("--aws-region", default="ap-south-1", show_default=True, help="AWS region for SageMaker endpoint")
 @click.option("--predict", is_flag=True, help="Enable bioage prediction using SageMaker")
-def main(pdf_path, json_path, out_path, registry_path, strict_level, sagemaker_endpoint, aws_region, predict):
+@click.option("--model-type", default="cvd", type=click.Choice(["cvd", "liver", "kidney"]), show_default=True, help="Model type for null value filling")
+@click.option("--fill-nulls", is_flag=True, help="Fill null values with mean values before SageMaker prediction")
+@click.option("--check-completeness", is_flag=True, help="Check data completeness for the specified model")
+def main(pdf_path, json_path, out_path, registry_path, strict_level, sagemaker_endpoint, aws_region, predict, model_type, fill_nulls, check_completeness):
     # Extract lab parameters
     triples = extract_all(pdf_path)
     registry = load_registry(registry_path)
@@ -64,6 +68,27 @@ def main(pdf_path, json_path, out_path, registry_path, strict_level, sagemaker_e
             item["value"] = None
             item["unit"] = None
             item["machine_value"] = None
+
+    # Check data completeness if requested
+    if check_completeness:
+        completeness = check_model_completeness(js, model_type)
+        click.echo(f"📊 Data Completeness for {model_type.upper()} Model:")
+        click.echo(f"  Required parameters: {completeness['total_required']}")
+        click.echo(f"  Present parameters: {completeness['present']}")
+        click.echo(f"  Missing parameters: {completeness['missing']}")
+        click.echo(f"  Completeness: {completeness['completeness_percentage']:.1f}%")
+        
+        if completeness['missing_parameters']:
+            click.echo(f"  Missing: {', '.join(completeness['missing_parameters'])}")
+        
+        # Don't proceed with prediction if completeness is too low
+        if completeness['completeness_percentage'] < 50:
+            click.echo("⚠️  Warning: Data completeness is below 50%. Consider using --fill-nulls option.")
+    
+    # Fill null values if requested
+    if fill_nulls:
+        js = fill_null_values_with_means(js, model_type)
+        click.echo(f"✅ Null values filled with mean values for {model_type.upper()} model")
 
     # SageMaker prediction if requested
     if predict:
