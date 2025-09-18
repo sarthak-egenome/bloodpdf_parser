@@ -1,0 +1,117 @@
+parameters:
+  - name: "Glucose, Fasting"
+    id: "977"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Hba1c (Glycosylated Hemoglobin)"
+    id: "1018"
+    unit: "%"
+    rounding: 1
+  - name: "Serum Creatinine"
+    id: "696"
+    unit: "mg/dl"
+    rounding: 2
+  - name: "GFR, ESTIMATED"
+    id: "2303"
+    unit: "mL/min/1.73m2"
+    rounding: 1
+  - name: "HS-CRP (HIGH SENSITIVITY C-REACTIVE PROTEIN)"
+    id: "1276"
+    unit: "mg/L"
+    rounding: 1
+  - name: "Total Cholesterol"
+    id: "625"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Serum Triglycerides"
+    id: "2165"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Serum HDL Cholesterol"
+    id: "1033"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Serum LDL Cholesterol"
+    id: "1638"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Serum VLDL Cholesterol"
+    id: "2273"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Serum Calcium"
+    id: "548"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Serum Phosphorus"
+    id: "1900"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Serum Uric Acid"
+    id: "2208"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "VITAMIN D (25 - OH VITAMIN D)"
+    id: "2226"
+    unit: "ng/ml"
+    rounding: 1
+  - name: "VITAMIN B12"
+    id: "2221"
+    unit: "pg/mL"
+    rounding: 0
+  - name: "Thyroid Stimulating Hormone (TSH)-Ultrasensitive"
+    id: "2192"
+    unit: "µIU/mL"
+    rounding: 2
+  - name: "Hemoglobin"
+    id: "1041"
+    unit: "g/dL"
+    rounding: 1
+  - name: "Hematocrit"
+    id: "1881"
+    unit: "%"
+    rounding: 1
+  - name: "Total Protein"
+    id: "1947"
+    unit: "g/dl"
+    rounding: 1
+  - name: "Serum Albumin"
+    id: "135"
+    unit: "g/dl"
+    rounding: 1
+  - name: "Serum Sodium"
+    id: "2040"
+    unit: "mmol/L"
+    rounding: 0
+  - name: "Serum Potassium"
+    id: "1919"
+    unit: "mmol/L"
+    rounding: 1
+  - name: "Serum Chloride"
+    id: "621"
+    unit: "mmol/L"
+    rounding: 0
+  - name: "Blood Urea Nitrogen"
+    id: "531"
+    unit: "mg/dl"
+    rounding: 1
+  - name: "Aspartate Aminotransferase (AST)"
+    id: "2024"
+    unit: "U/L"
+    rounding: 1
+  - name: "Alanine Aminotransferase (ALT)"
+    id: "2025"
+    unit: "U/L"
+    rounding: 1
+  - name: "Alkaline Phosphatase"
+    id: "150"
+    unit: "U/L"
+    rounding: 1
+  - name: "Total Bilirubin"
+    id: "504"
+    unit: "mg/dl"
+    rounding: 2
+  - name: "Direct Bilirubin"
+    id: "502"
+    unit: "mg/dl"
+    rounding: 2

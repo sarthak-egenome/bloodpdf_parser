@@ -1,0 +1,6 @@
+pdfplumber==0.11.4
+pdfminer.six==20231228
+rapidfuzz==3.9.6
+pydantic==2.8.2
+click==8.1.7
+boto3>=1.35.75
